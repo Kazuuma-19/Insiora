@@ -1,4 +1,4 @@
-package com.togglinsighthub.backend;
+package com.insiora.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,0 +1,5 @@
+pre-commit:
+  commands:
+    gitleaks:
+      # ステージされた変更だけを検査する（秘密情報はログに出さない）
+      run: gitleaks git --pre-commit --staged --redact --verbose

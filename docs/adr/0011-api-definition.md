@@ -1,0 +1,112 @@
+# 0011. API 定義
+
+## 決定
+
+TypeSpec を採用し、API を先に設計する（スキーマファースト）。`api/main.tsp` に定義し、`tsp compile` で OpenAPI 3 を出力する。コード生成は、backend は [0014](0014-backend-codegen.md)、frontend は [0012](0012-frontend-codegen.md) を参照。
+
+```
+api/main.tsp ─ tsp compile ─▶ api/openapi.yaml
+                               ├─▶ backend:  openapi-generator → Spring のインターフェースと DTO
+                               └─▶ frontend: orval → 型・TanStack Query のフック・MSW のモック
+```
+
+### 理由
+
+- frontend と backend を同じリポジトリで開発するため、1 つの定義から両方の型を揃えたい
+- 定義と実装がずれると、どちらかでコンパイルエラーになり、早く気付ける
+- 実装の前に API を設計・レビューでき、frontend と backend を並行して作れる（MSW のモック（[0015](0015-api-mock.md)）と組み合わせる）
+- OpenAPI を YAML で直接書くより、記述量がずっと少ない
+
+## 比較案
+
+| 案 | 名称 | バージョン | 特徴 | 判定 |
+| --- | --- | --- | --- | --- |
+| 1 | TypeSpec | 1.18.0 | 短い記述で OpenAPI を出力 | 採用 |
+| 2 | springdoc-openapi | 3.2.0 | コードから OpenAPI を出力 | 次点 |
+| 3 | OpenAPI（YAML 直接記述） | — | 標準の形式をそのまま書く | 見送り |
+| 4 | GraphQL | — | 必要なデータだけを取得 | 見送り |
+| 5 | gRPC / Connect | — | Protocol Buffers で定義 | 見送り |
+
+## 案1: TypeSpec
+
+### 概要
+
+Microsoft 製の API 定義言語。TypeScript に似た書き方で API を定義し、OpenAPI 3 などを出力する。
+
+### メリット
+
+- 短い記述で OpenAPI 3 を出力でき、型の再利用もしやすい
+- 実装の前に、型とエンドポイントを決めてレビューできる
+- 1 つの定義から backend と frontend の型を揃えられる
+
+### デメリット
+
+- Java のサーバーコードは直接生成できず、OpenAPI を経由して openapi-generator を使う
+- 生成の段階（TypeSpec → OpenAPI → Java / TS）が増える
+
+## 案2: springdoc-openapi（コードファースト）
+
+### 概要
+
+Spring のコントローラーやアノテーションから、OpenAPI を自動で出力するライブラリ。
+
+### メリット
+
+- 仕組みが最小で、アノテーションだけで済む
+- 学習コストが低い
+
+### デメリット
+
+- API は実装しながら決まり、先に設計してレビューしにくい
+- backend を実装するまで frontend の型が作れない
+
+## 案3: OpenAPI を YAML で直接記述
+
+### 概要
+
+API の標準仕様である OpenAPI を、YAML で直接書く方法。
+
+### メリット
+
+- 標準の形式で、追加の言語が不要
+
+### デメリット
+
+- 記述量が TypeSpec の数倍になる
+
+## 案4: GraphQL
+
+### 概要
+
+スキーマで型を定義し、クライアントが必要なフィールドを指定して取得するクエリ言語。
+
+### メリット
+
+- 画面ごとに必要なデータだけを取得できる
+
+### デメリット
+
+- キャッシュ、N+1 問題、認可の設計が難しくなる
+- 最初は REST より複雑になる
+
+## 案5: gRPC / Connect
+
+### 概要
+
+Protocol Buffers（`.proto`）で API を定義し、RPC 形式で通信する方式。
+
+### メリット
+
+- 型が厳密
+
+### デメリット
+
+- ブラウザから gRPC を直接は呼べず、Spring MVC と組み合わせにくい
+
+## 変更履歴
+
+| 日付 | 内容 |
+| --- | --- |
+| 2026-11-17 | 初版作成 |
+| 2026-11-17 | backend のコード生成を 0014 へ分離 |
+| 2026-11-17 | 構成を変更（決定の理由、比較表、各案の概要を追加） |

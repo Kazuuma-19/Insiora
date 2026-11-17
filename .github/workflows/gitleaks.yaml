@@ -1,0 +1,25 @@
+name: gitleaks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # 全履歴を検査するため
+
+      # mise.toml で固定したバージョンの gitleaks だけを入れる
+      - uses: jdx/mise-action@v5
+        with:
+          install_args: gitleaks
+
+      - name: Scan for secrets
+        run: gitleaks git --redact --verbose

@@ -2,7 +2,7 @@
 
 ## 決定
 
-oxlint を採用する。React と TypeScript のルールを有効にする。型情報を使うルールが必要になったら `oxlint-tsgolint` を追加する。
+oxlint を採用する。
 
 ### 理由
 

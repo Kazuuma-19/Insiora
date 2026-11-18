@@ -2,13 +2,7 @@
 
 ## 決定
 
-TypeSpec を採用し、API を先に設計する（スキーマファースト）。`api/main.tsp` に定義し、`tsp compile` で OpenAPI 3 を出力する。コード生成は、backend は [0014](../backend/0014-backend-codegen.md)、frontend は [0012](../frontend/0012-frontend-codegen.md) を参照。
-
-```
-api/main.tsp ─ tsp compile ─▶ api/openapi.yaml
-                               ├─▶ backend:  openapi-generator → Spring のインターフェースと DTO
-                               └─▶ frontend: orval → 型・TanStack Query のフック・MSW のモック
-```
+TypeSpec を採用する。
 
 ### 理由
 

@@ -2,7 +2,7 @@
 
 ## 決定
 
-Spotless（Gradle プラグイン）と palantir-java-format を採用する。`./gradlew spotlessApply` で整形し、`spotlessCheck` で検査する。
+Spotless と palantir-java-format を採用する。
 
 ### 理由
 

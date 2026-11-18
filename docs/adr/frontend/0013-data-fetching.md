@@ -2,7 +2,7 @@
 
 ## 決定
 
-TanStack Query を採用する。フックは orval（[0012](0012-frontend-codegen.md)）で生成する。
+TanStack Query を採用する。
 
 ### 理由
 

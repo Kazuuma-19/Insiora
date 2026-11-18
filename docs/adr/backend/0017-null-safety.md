@@ -2,7 +2,7 @@
 
 ## 決定
 
-JSpecify のアノテーションと NullAway を採用する。各パッケージの `package-info.java` に `@NullMarked` を付け、参照型は既定で null を許さない扱いにする。null になりうる箇所だけ `@Nullable` を付ける。NullAway は Error Prone（[0004](0004-java-linter.md)）のプラグインとして動かし、違反はコンパイルエラーにする。JSpecify のバージョンは Spring Boot 4.1 が管理する 1.0.1 を使う。
+JSpecify と NullAway を採用する。
 
 ### 理由
 

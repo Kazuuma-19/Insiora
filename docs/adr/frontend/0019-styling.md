@@ -2,7 +2,7 @@
 
 ## 決定
 
-Tailwind CSS だけを使う。Vite には `@tailwindcss/vite` プラグインで組み込む。CSS ファイルは Tailwind の読み込みとテーマの定義（`@theme` での色やフォントなど）に限り、コンポーネントのスタイルはクラスで書く。条件付きのクラスの結合には `clsx` を使う。
+Tailwind CSS を採用し、CSS は Tailwind CSS だけで書く。
 
 ### 理由
 

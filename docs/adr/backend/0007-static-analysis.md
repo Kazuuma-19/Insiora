@@ -2,7 +2,7 @@
 
 ## 決定
 
-Qodana（JVM Community 版）を backend に採用する。GitHub Actions で、PR と main への push のたびに `JetBrains/qodana-action` で実行する。設定は `qodana.yaml` にまとめ、CI と同じ設定でローカルでも `qodana scan` で実行できるようにする。frontend は oxlint（[0005](../frontend/0005-frontend-linter.md)）に任せる。
+backend の静的解析に Qodana（JVM Community 版）を採用する。
 
 ### 理由
 

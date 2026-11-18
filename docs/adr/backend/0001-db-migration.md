@@ -2,7 +2,7 @@
 
 ## 決定
 
-Flyway を採用する。バージョンは Spring Boot 4.1 が管理する 12.4.0 を使い、`build.gradle` では指定しない。依存関係は `spring-boot-starter-flyway` と `flyway-database-postgresql`。マイグレーションは `src/main/resources/db/migration` に置く。
+Flyway を採用する。
 
 ### 理由
 

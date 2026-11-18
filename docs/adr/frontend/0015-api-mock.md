@@ -2,12 +2,7 @@
 
 ## 決定
 
-MSW（Mock Service Worker）を採用する。モックのハンドラーは orval（[0012](0012-frontend-codegen.md)）で OpenAPI から生成する。次の 2 つの用途で使う。
-
-- 開発: backend の実装がなくても、TypeSpec で定義した API を使って画面を作る
-- テスト: Vitest と React Testing Library のテスト（[0009](0009-frontend-test.md)）で、API の応答を差し替える
-
-E2E テスト（[0010](0010-e2e-test.md)）では使わず、本物の backend につなぐ。
+MSW（Mock Service Worker）を採用する。
 
 ### 理由
 

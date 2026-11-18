@@ -2,7 +2,7 @@
 
 ## 決定
 
-JUnit、Mockito、AssertJ（Spring Boot のテスト用 starter に同梱）に加え、DB を使うテストには Testcontainers を採用する。Spring Boot の `@ServiceConnection` で接続設定を自動にする。カバレッジ計測の JaCoCo、設計ルールのテストの ArchUnit は必要になったら追加する。
+テストの基盤は Spring Boot に同梱の JUnit、Mockito、AssertJ を使い、DB を使うテストには Testcontainers を採用する。
 
 ### 理由
 

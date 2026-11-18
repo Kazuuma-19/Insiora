@@ -2,7 +2,7 @@
 
 ## 決定
 
-Error Prone を採用する。Gradle では `net.ltgt.errorprone` プラグインを使う。Java 25 での動作は導入時に確認する。
+Error Prone を採用する。
 
 ### 理由
 

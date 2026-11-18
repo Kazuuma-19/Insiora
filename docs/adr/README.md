@@ -34,7 +34,7 @@ Insiora の技術的な決定と、その理由を記録する。
 | [0014](backend/0014-backend-codegen.md) | backend のコード生成 | openapi-generator |
 | [0016](backend/0016-db-access.md) | DB アクセス | JdbcClient |
 | [0017](backend/0017-null-safety.md) | null 安全性 | JSpecify + NullAway |
-| [0022](backend/0022-external-api-client.md) | Toggl API の呼び出し | HTTP Service Client（`@HttpExchange`） |
+| [0022](backend/0022-external-api-client.md) | 外部 API の呼び出し | HTTP Service Client（`@HttpExchange`） |
 
 ### frontend
 

@@ -2,7 +2,7 @@
 
 ## 決定
 
-テストランナーに Vitest、コンポーネントのテストに React Testing Library と `@testing-library/jest-dom`、ブラウザ環境に jsdom を採用する。API のモックには MSW を使う（[0015](0015-api-mock.md)）。
+テストランナーに Vitest、コンポーネントのテストに React Testing Library、ブラウザ環境に jsdom を採用する。
 
 ### 理由
 

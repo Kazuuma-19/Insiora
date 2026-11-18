@@ -2,11 +2,7 @@
 
 ## 決定
 
-frontend の日付と時刻の処理には、JavaScript の標準 API である Temporal を使う。Safari の安定版が対応するまでは `temporal-polyfill` で補い、対応後に polyfill を外す。
-
-- 日時は `Temporal.Instant` / `Temporal.ZonedDateTime`、日付は `Temporal.PlainDate`、所要時間は `Temporal.Duration` で扱う
-- 日付の表示用の書式（「11月18日（火）」など）は `Intl.DateTimeFormat` を使う
-- システム全体での日時の扱い（保存形式、API の形式など）は [0023](../common/0023-date-time-handling.md) に従う
+Temporal を採用する。未対応のブラウザ向けに temporal-polyfill を使う。
 
 ### 理由
 

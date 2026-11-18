@@ -1,25 +1,18 @@
-# 0022. Toggl API の呼び出し
+# 0022. 外部 API の呼び出し
 
 ## 決定
 
-Spring Framework 7 の HTTP Service Client（`@HttpExchange`）を採用する。依存関係は `spring-boot-starter-restclient` を使い、内部の HTTP クライアントは RestClient にする。
-
-- Toggl の API は `TogglClient` インターフェースに `@GetExchange` などで定義し、`@ImportHttpServices(group = "toggl", ...)` で登録する
-- 接続先の URL、Basic 認証（API トークン）、エラー処理は、グループ単位の設定（`RestClientHttpServiceGroupConfigurer`）にまとめる
-- レスポンスは record で受け取り、null になりうる項目（計測中の記録の `stop` など）には `@Nullable` を付ける（[0017](0017-null-safety.md)）
-- レート制限（429）などのエラーは、共通のエラー処理で専用の例外に変換する
-- ページングや期間の分割などのループは、インターフェースではなく、同期を行うサービス側に書く
-
-設定用のメソッド名やプロパティでの設定方法は、導入時に公式ドキュメントで確認する。
+外部サービスの API の呼び出しに、Spring Framework 7 の HTTP Service Client（`@HttpExchange`）を採用する。
 
 ### 理由
 
 - Spring Boot 4 の標準の方式で、追加のライブラリが不要
-- 使っている Toggl の API がインターフェース 1 か所にまとまり、一覧しやすい
+- 外部サービスごとに、使っている API がインターフェース 1 か所にまとまり、一覧しやすい
+- 外部サービスが増えても、グループを追加するだけで、同じ書き方と設定方法で扱える
 - 呼び出し側はメソッドを呼ぶだけで、リクエストの組み立てが散らばらない
-- テストではインターフェースをモックに差し替えるだけで、Toggl に実際にアクセスせずに同期の処理を確認できる
+- テストではインターフェースをモックに差し替えるだけで、外部サービスに実際にアクセスせずに処理を確認できる
 - 内部は RestClient のため、細かい制御が必要な場合は RestClient を直接使う方法と併用できる
-- Toggl API にはレート制限があるとされ、エラー処理を 1 か所にまとめておく必要がある
+- Toggl API のようにレート制限がある API もあり、エラー処理をサービスごとに 1 か所にまとめておく必要がある
 
 ## 比較案
 

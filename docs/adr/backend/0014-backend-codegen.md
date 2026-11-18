@@ -2,19 +2,13 @@
 
 ## 決定
 
-openapi-generator（`spring` ジェネレーター、Gradle プラグイン）を採用する。TypeSpec（[0011](../common/0011-api-definition.md)）から出力した OpenAPI をもとに、Spring のインターフェースと DTO を生成し、コントローラーでインターフェースを実装する。主な設定は次のとおり。
-
-- `interfaceOnly=true`: インターフェースと DTO だけを生成する
-- `useSpringBoot4=true`: Spring Boot 4 向けのコードを生成する
-- `useRecords=true`: DTO を Java の record で生成する（Lombok は使わない）
-
-生成物はコミットせず、ビルド時に生成する。生成したコードが Spring Boot 4.1 で動くかは、導入時に確認する。
+openapi-generator（`spring` ジェネレーター）を採用する。
 
 ### 理由
 
 - TypeSpec は Java のサーバーコードを直接出力できないため、OpenAPI から生成するツールが必要
 - 利用者と情報が最も多く、Spring Boot 4、Jackson 3、record に対応したオプションがある（公式ドキュメントで確認）
-- インターフェースだけを生成し、実装は自分で書くため、生成コードの癖の影響を小さくできる
+- インターフェースだけを生成するオプションがあり、生成コードの癖の影響を小さくできる
 - DTO を record で生成できるので、Lombok が不要になる
 
 ## 比較案

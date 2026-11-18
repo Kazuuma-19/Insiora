@@ -2,7 +2,7 @@
 
 ## 決定
 
-TanStack Router を採用する。ファイルベースのルーティング（`@tanstack/router-plugin` の Vite プラグイン）を使い、ルートは `src/routes` に置く。ルートの `loader` では TanStack Query（[0013](0013-data-fetching.md)）の `ensureQueryData` でデータを先読みする。期間やフィルターなどの画面の条件は、型付きの検索パラメーター（search params）で URL に持たせる。
+TanStack Router を採用する。
 
 ### 理由
 

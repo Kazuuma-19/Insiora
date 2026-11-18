@@ -2,7 +2,7 @@
 
 ## 決定
 
-Spring Framework の `JdbcClient` を採用する。SQL を直接書き、結果は Java の record にマッピングする。Spring Data JDBC のリポジトリは使わないため、依存関係は `spring-boot-starter-data-jdbc` から `spring-boot-starter-jdbc`（テストは `spring-boot-starter-jdbc-test`）に変更する。
+Spring Framework の `JdbcClient` を採用する。
 
 ### 理由
 

@@ -2,7 +2,7 @@
 
 ## 決定
 
-TypeSpec を採用し、API を先に設計する（スキーマファースト）。`api/main.tsp` に定義し、`tsp compile` で OpenAPI 3 を出力する。コード生成は、backend は [0014](0014-backend-codegen.md)、frontend は [0012](0012-frontend-codegen.md) を参照。
+TypeSpec を採用し、API を先に設計する（スキーマファースト）。`api/main.tsp` に定義し、`tsp compile` で OpenAPI 3 を出力する。コード生成は、backend は [0014](../backend/0014-backend-codegen.md)、frontend は [0012](../frontend/0012-frontend-codegen.md) を参照。
 
 ```
 api/main.tsp ─ tsp compile ─▶ api/openapi.yaml
@@ -14,7 +14,7 @@ api/main.tsp ─ tsp compile ─▶ api/openapi.yaml
 
 - frontend と backend を同じリポジトリで開発するため、1 つの定義から両方の型を揃えたい
 - 定義と実装がずれると、どちらかでコンパイルエラーになり、早く気付ける
-- 実装の前に API を設計・レビューでき、frontend と backend を並行して作れる（MSW のモック（[0015](0015-api-mock.md)）と組み合わせる）
+- 実装の前に API を設計・レビューでき、frontend と backend を並行して作れる（MSW のモック（[0015](../frontend/0015-api-mock.md)）と組み合わせる）
 - OpenAPI を YAML で直接書くより、記述量がずっと少ない
 
 ## 比較案

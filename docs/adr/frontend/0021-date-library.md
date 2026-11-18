@@ -1,25 +1,19 @@
-# 0021. 日付と時刻
+# 0021. frontend の日付ライブラリ
 
 ## 決定
 
 frontend の日付と時刻の処理には、JavaScript の標準 API である Temporal を使う。Safari の安定版が対応するまでは `temporal-polyfill` で補い、対応後に polyfill を外す。
 
-あわせて、システム全体の日付と時刻の扱いを次のように決める。
-
-| 場所 | 扱い |
-| --- | --- |
-| DB | `timestamptz` で保存する（UTC） |
-| backend | java.time の `Instant` で扱い、集計の日の区切りには `ZoneId`（利用者のタイムゾーン）を使う |
-| API | ISO 8601 の文字列でやりとりする（日時は `2026-11-18T12:00:00Z`、日付は `2026-11-18`） |
-| frontend | 日時は `Temporal.Instant` / `Temporal.ZonedDateTime`、日付は `Temporal.PlainDate`、所要時間は `Temporal.Duration` で扱う |
+- 日時は `Temporal.Instant` / `Temporal.ZonedDateTime`、日付は `Temporal.PlainDate`、所要時間は `Temporal.Duration` で扱う
+- 日付の表示用の書式（「11月18日（火）」など）は `Intl.DateTimeFormat` を使う
+- システム全体での日時の扱い（保存形式、API の形式など）は [0023](../common/0023-date-time-handling.md) に従う
 
 ### 理由
 
-- Insiora の中心は、Toggl の時間記録（UTC）を、利用者のタイムゾーンで日や週に区切って集計すること。タイムゾーン付きの日時、日付だけ、時間の長さを型で区別できる Temporal が合う
+- Insiora の中心は、Toggl の時間記録を利用者のタイムゾーンで日や週に区切って集計・表示すること。タイムゾーン付きの日時、日付だけ、時間の長さを型で区別できる Temporal が合う
 - 型が分かれているため、日付だけの値と日時を取り違えたり、日の区切りを間違えたりしにくい
 - JavaScript の標準 API（TC39 で Stage 4）のため、ブラウザが対応すればライブラリが不要になり、入れ替えも発生しない
 - Firefox（139）、Chrome / Edge（144）はすでに対応していて、未対応の Safari は polyfill で補える
-- 保存を UTC に揃え、タイムゾーンの変換は集計と表示の時だけ行うことで、変換の誤りが起きる場所を限定できる
 
 ## 比較案
 
@@ -46,7 +40,7 @@ JavaScript の `Date` に代わる、新しい標準の日付・時刻 API。日
 
 - Safari の安定版が未対応で、当面は polyfill が必要
 - 新しい API のため、情報はまだ少ない
-- 日付の書式（「11月18日（火）」など）は `Intl.DateTimeFormat` と組み合わせる
+- 日付の書式は `Intl.DateTimeFormat` と組み合わせる必要がある
 
 ## 案2: date-fns + @date-fns/tz
 
@@ -98,3 +92,4 @@ Moment.js に似た書き方の、非常に小さい日付ライブラリ。
 | 日付 | 内容 |
 | --- | --- |
 | 2026-11-18 | 初版作成 |
+| 2026-11-18 | システム全体の日時の扱いを 0023 に分離し、frontend の日付ライブラリの決定に絞る |

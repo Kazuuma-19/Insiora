@@ -2,7 +2,7 @@
 
 ## 決定
 
-Qodana（JVM Community 版）を backend に採用する。GitHub Actions が使えるまではローカルで `qodana scan` を実行し、設定は `qodana.yaml` にまとめる。frontend は oxlint（[0005](0005-frontend-linter.md)）に任せる。
+Qodana（JVM Community 版）を backend に採用する。GitHub Actions が使えるまではローカルで `qodana scan` を実行し、設定は `qodana.yaml` にまとめる。frontend は oxlint（[0005](../frontend/0005-frontend-linter.md)）に任せる。
 
 ### 理由
 

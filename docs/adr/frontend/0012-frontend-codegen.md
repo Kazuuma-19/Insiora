@@ -2,7 +2,7 @@
 
 ## 決定
 
-orval を採用する。TypeSpec（[0011](0011-api-definition.md)）から出力した OpenAPI をもとに、型、TanStack Query のフック、MSW のモックを生成する。生成物はコミットせず、ビルド時に生成する。
+orval を採用する。TypeSpec（[0011](../common/0011-api-definition.md)）から出力した OpenAPI をもとに、型、TanStack Query のフック、MSW のモックを生成する。生成物はコミットせず、ビルド時に生成する。
 
 ### 理由
 

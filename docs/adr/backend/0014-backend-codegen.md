@@ -2,7 +2,7 @@
 
 ## 決定
 
-openapi-generator（`spring` ジェネレーター、Gradle プラグイン）を採用する。TypeSpec（[0011](0011-api-definition.md)）から出力した OpenAPI をもとに、Spring のインターフェースと DTO を生成し、コントローラーでインターフェースを実装する。主な設定は次のとおり。
+openapi-generator（`spring` ジェネレーター、Gradle プラグイン）を採用する。TypeSpec（[0011](../common/0011-api-definition.md)）から出力した OpenAPI をもとに、Spring のインターフェースと DTO を生成し、コントローラーでインターフェースを実装する。主な設定は次のとおり。
 
 - `interfaceOnly=true`: インターフェースと DTO だけを生成する
 - `useSpringBoot4=true`: Spring Boot 4 向けのコードを生成する

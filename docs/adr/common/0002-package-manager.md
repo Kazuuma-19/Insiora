@@ -19,8 +19,8 @@ Insiora/
 ```
 
 - 依存関係のインストールは、ルートで `pnpm install` を 1 回実行する
-- oxlint（[0005](0005-frontend-linter.md)）と oxfmt（[0006](0006-frontend-formatter.md)）はルートに入れ、全プロジェクトで共有する
-- `frontend` は `api` を `workspace:*` で参照し、`pnpm -r build` で TypeSpec のコンパイル → orval の生成（[0012](0012-frontend-codegen.md)）の順に実行されるようにする
+- oxlint（[0005](../frontend/0005-frontend-linter.md)）と oxfmt（[0006](../frontend/0006-frontend-formatter.md)）はルートに入れ、全プロジェクトで共有する
+- `frontend` は `api` を `workspace:*` で参照し、`pnpm -r build` で TypeSpec のコンパイル → orval の生成（[0012](../frontend/0012-frontend-codegen.md)）の順に実行されるようにする
 - 特定のプロジェクトだけで実行する場合は `pnpm --filter <名前>` を使う
 
 ### 理由

@@ -1,9 +1,7 @@
 name: gitleaks
 
 on:
-  push:
-    branches: [main]
-  pull_request:
+  pull_request: # main は PR 必須のため、PR の検査だけで main に入るコミットを網羅できる
 
 permissions:
   contents: read

@@ -2,14 +2,15 @@
 
 ## 決定
 
-Qodana（JVM Community 版）を backend に採用する。GitHub Actions が使えるまではローカルで `qodana scan` を実行し、設定は `qodana.yaml` にまとめる。frontend は oxlint（[0005](../frontend/0005-frontend-linter.md)）に任せる。
+Qodana（JVM Community 版）を backend に採用する。GitHub Actions で、PR と main への push のたびに `JetBrains/qodana-action` で実行する。設定は `qodana.yaml` にまとめ、CI と同じ設定でローカルでも `qodana scan` で実行できるようにする。frontend は oxlint（[0005](../frontend/0005-frontend-linter.md)）に任せる。
 
 ### 理由
 
 - 開発に IntelliJ IDEA を使っていて、IDE と同じインスペクションで検査できる
 - IDE 上の警告と検査結果が一致するので、指摘を IDE で確認・修正しやすい
 - JVM 用の Community 版は無料で、外部サービスへの登録も不要
-- ローカルでも実行できるため、GitHub Actions が使えない今でも導入できる
+- 公式の GitHub Action があり、PR ごとの検査に組み込みやすい
+- CI と同じ設定でローカルでも実行でき、push の前に結果を確認できる
 
 ## 比較案
 
@@ -64,7 +65,6 @@ GitHub 製の静的解析エンジン。GitHub の code scanning として、脆
 ### デメリット
 
 - コード品質より脆弱性の検出が中心
-- GitHub Actions で動くため、Actions が使えないと実行できない
 
 ## 変更履歴
 
